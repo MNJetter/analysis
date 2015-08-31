@@ -1,7 +1,7 @@
 ##################################################
 ## This script uses the natural language        ##
-## toolkit to get a concordance, or list of     ##
-## text around a specific word.                 ##
+## toolkit to get collocations, or list of      ##
+## words that appear frequently together.       ##
 ##################################################
 ## IMPORTANT!                                   ##
 ## Make sure that you are in the same directory ##
@@ -16,10 +16,11 @@
 
 # get necessary modules
 import nltk
+import re
 from sys import argv
 
 # get the file name and target word from user input with the script command
-script, fname, textword = argv
+script, fname = argv
 
 # turn the file into an NLTK tokenized object
 file = open(fname)
@@ -27,5 +28,5 @@ t = file.read();
 tokens = nltk.word_tokenize(t)
 text = nltk.Text(tokens)
 
-# get a concordance of the word
-text.concordance(textword, lines=1000)
+# get collocations for the text
+text.collocations()

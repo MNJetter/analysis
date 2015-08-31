@@ -14,19 +14,19 @@
 ## Written by A. Woolfrey                       ##
 ##################################################
 
-# get the nltk tools
+# get necessary modules
 import nltk
+import re
+from sys import argv
 
-# ask the user for a file name
-fname = open(str(raw_input("File name: ")))
+# get the file name and target word from user input with the script command
+script, fname, textword = argv
 
 # turn the file into an NLTK tokenized object
-t = fname.read();
+file = open(fname)
+t = file.read();
 tokens = nltk.word_tokenize(t)
 text = nltk.Text(tokens)
-
-# ask the user for a word
-textword = str(raw_input("Word: "))
 
 # get a concordance of the word
 text.concordance(textword, lines=1000)
