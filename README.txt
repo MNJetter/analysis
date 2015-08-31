@@ -35,4 +35,4 @@ $ python2.7 ncl.py fname
 (fname = file name, such as transcript.txt)
 
 Example output:
-little bit; New York; Silicon Valley; United States; San Francisco; real estate; make sure; Hong Kong; 've got; business model; years ago; would say; educational background; social media; company culture; Edison Awards; anything else; target audience; good luck; every day
+> little bit; New York; Silicon Valley; United States; San Francisco; real estate; make sure; Hong Kong; 've got; business model; years ago; would say; educational background; social media; company culture; Edison Awards; anything else; target audience; good luck; every day
