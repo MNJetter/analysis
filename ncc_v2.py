@@ -16,13 +16,14 @@
 
 # get necessary modules
 import nltk
-import argv
+from sys import argv
 
 # get the file name and target word from user input with the script command
-fname, textword = argv
+script, fname, textword = argv
 
 # turn the file into an NLTK tokenized object
-t = fname.read();
+file = open(fname)
+t = file.read();
 tokens = nltk.word_tokenize(t)
 text = nltk.Text(tokens)
 
