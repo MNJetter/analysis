@@ -5,7 +5,7 @@ script, filename = argv
 subfile = open(filename,'r')
 material = subfile.read()
 
-quest = re.findall('', material)
+quest = re.findall('[a-zA-Z]+', material)
 
 # (for debugging the regex search)
 print quest
