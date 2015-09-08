@@ -14,3 +14,7 @@ masterfile = open('MASTERTRANSCRIPT.txt','w')
 for subline in material.splitlines():
 	if quest.match(subline):
 		masterfile.write(subline + '\n')
+
+# closing files is a good idea after they've been opened...
+subfile.close()
+materfile.close()
