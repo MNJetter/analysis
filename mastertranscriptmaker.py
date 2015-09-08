@@ -1,11 +1,9 @@
 import re
-from sys import argv
 
-script, filename = argv
-subfile = open(filename,'r')
+subfile = open('3m-davidfrazee-int-e.srt','r')
 material = subfile.read()
 
-quest = re.findall('[a-zA-Z\.\,\?\! ]+', material)
+quest = re.findall('[a-zA-Z]+', material)
 
 # (for debugging the regex search)
 print quest
