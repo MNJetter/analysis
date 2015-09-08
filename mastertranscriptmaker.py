@@ -3,10 +3,10 @@ import re
 subfile = open('3m-davidfrazee-int-e.srt','r')
 material = subfile.read()
 
-quest = re.findall('[a-zA-Z]+', material)
+quest = re.compile('[a-zA-Z]+')
+masterfile = open('MASTERTRANSCRIPT.txt','w')
 
-# (for debugging the regex search)
-print quest
-
-# masterfile = open('MASTERTRANSCRIPT.txt','w')
-# masterfile.write(quest)
+for subline in material.splitlines():
+	if quest.match(subline):
+		print subline
+		masterfile.write(subline + '\n')
