@@ -8,5 +8,4 @@ masterfile = open('MASTERTRANSCRIPT.txt','w')
 
 for subline in material.splitlines():
 	if quest.match(subline):
-		print subline
 		masterfile.write(subline + '\n')
