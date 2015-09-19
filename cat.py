@@ -20,30 +20,76 @@ right_count = 0
 wrong_count = 0
 total_count = 0
 
-answer_key = ['a','b','a','b','a','b','b','a','a','a','a','a','b','a','a','b','a','a','b','b']
 
-while total_count < 20:
-	if right_count == 2:
-		eng_level += 1
-		right_count = 0
-		wrong_count = 0
-		print "Moving to Level %d" % eng_level
-	elif wrong_count == 2:
-		eng_level -= 1
-		right_count = 0
-		wrong_count = 0
-		print "Moving to Level %d" % eng_level
-	else:
-		student_answer = str(raw_input("Enter A or B: ")
-		if student_answer == answer_key[total_count]
-			right_count += 1
-			total_count += 1
-			print "Right!"
-		elif student_answer != answer_key[total_count]
-			wrong_count += 1
-			total_count += 1
-			print "Not quite."
-print "Test complete! Your level is %s." % eng_level
+#
+#  we can use this object to do the counting for us
+#
+class Count:
+    right_count = 0
+    wrong_count = 0
+    total_count = 0
+    current_level = 3
+
+    #
+    #  __init__  : this is done when the object is first created
+    #
+    def __init__(self):
+        self.right_count = 0
+        self.wrong_count = 0
+        self.total_count = 0
+        self.current_level = 3
+
+    #  reset the right & wrong counts
+    def reset(self):
+        self.right_count = 0
+        self.wrong_count = 0
+
+    #  Check if we need to change level and update
+    def update(self):
+        if self.right_count == 2:
+            self.current_level += 1  # TODO make sure current level doesn't exceed a level maximum
+            self.reset()
+            print("Moving to Level %d" % self.current_level)
+
+        elif self.wrong_count == 2:
+            self.current_level -= 1  # TODO make sure current level is positive (or non-negative)
+            self.reset()
+            print("Moving to Level %d" % self.current_level)
+
+    def was_right(self):
+        self.right_count += 1
+        self.total_count += 1
+        self.update()
+
+    def was_wrong(self):
+        self.wrong_count -= 1
+        self.total_count += 1
+        self.reset()
+
+
+
+answer_key = ['a', 'b', 'a', 'b', 'a', 'b', 'b', 'a', 'a', 'a', 'a', 'a', 'b', 'a', 'a', 'b', 'a', 'a', 'b', 'b']
+
+#
+#  We will ask 20 questions, and for each question we will change levels if necessary
+#  by necessary we mean if right_count or wrong_count == 2
+#
+
+#
+#  create a counter to do our counting for us
+#
+counter = Count()
+
+while counter.total_count < 20:
+    qu_number = counter.total_count
+    student_answer = str(raw_input("Enter A or B: ")).lower() # change to lowercase THEN check the answer
+    if student_answer == answer_key[qu_number]:
+        counter.was_right()
+        print("Right!")
+    else:  # this can be an else, since we know it isn't right, it must be wrong
+        counter.was_wrong()
+        print("Not quite.")
+print("Test complete! Your level is %s." % eng_level)
 
 ##################################################
 ## End CAT DEMO                                 ##
