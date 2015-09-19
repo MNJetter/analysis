@@ -25,11 +25,6 @@ total_count = 0
 #  we can use this object to do the counting for us
 #
 class Count:
-    right_count = 0
-    wrong_count = 0
-    total_count = 0
-    current_level = 3
-
     #
     #  __init__  : this is done when the object is first created
     #
@@ -56,6 +51,9 @@ class Count:
             self.reset()
             print("Moving to Level %d" % self.current_level)
 
+    #
+    #  Update relevant variables for right/wrong responses with these methods
+    #
     def was_right(self):
         self.right_count += 1
         self.total_count += 1
@@ -68,8 +66,6 @@ class Count:
 
 
 
-answer_key = ['a', 'b', 'a', 'b', 'a', 'b', 'b', 'a', 'a', 'a', 'a', 'a', 'b', 'a', 'a', 'b', 'a', 'a', 'b', 'b']
-
 #
 #  We will ask 20 questions, and for each question we will change levels if necessary
 #  by necessary we mean if right_count or wrong_count == 2
@@ -79,6 +75,8 @@ answer_key = ['a', 'b', 'a', 'b', 'a', 'b', 'b', 'a', 'a', 'a', 'a', 'a', 'b', '
 #  create a counter to do our counting for us
 #
 counter = Count()
+
+answer_key = ['a', 'b', 'a', 'b', 'a', 'b', 'b', 'a', 'a', 'a', 'a', 'a', 'b', 'a', 'a', 'b', 'a', 'a', 'b', 'b']
 
 while counter.total_count < 20:
     qu_number = counter.total_count
