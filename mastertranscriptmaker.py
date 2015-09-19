@@ -1,35 +1,38 @@
+##################################################
+## TRANSCRIPTER                                 ##
+##################################################
+## This script, working from ~/analysis/, takes ##
+## all the SRT files from ~/interview_srts/ and ##
+## makes a single text file of the EN lines.    ##
+##################################################
+## (c) 2015 Aly Woolfrey                        ##
+## Licensed for unlimited use, modification, or ##
+## distribution in perpetuity to SMATOOS, Inc.  ##
+##################################################
+
 import re
+import os, glob
 
-subfile = open('3m-davidfrazee-int-e.srt','r')
+# regex function that asks for any capital or lowercase letters
+result = re.compile('[a-zA-Z]+')
 
+# tells the computer where to look for SRT files (target directory)
+path = '../interview_srts/'
 
-#
-#  Find a list of all strings that have a character
-#
-material = subfile.read()
-quest = re.findall('[a-zA-Z]+', material)
+# makes an empty master transcript file in the target directory
+master = open(path + 'MASTERTRANSCRIPT.txt','w')
 
-#
-#  Find a list of all lines that have a character
-#
-subfile.seek(0)                            # reset the file stream to the beginning
-material_lines = subfile.readlines()       # read from the file as a list of lines
-result_lines = []                          # this will be our list of resulting lines with characters
-for line in material_lines:                # loop over all lines
-    result = re.search('[a-zA-Z]+', line)  # regex result for the line
-    if result != None :                    # if it contains something we will add this line to our list
-        result_lines.append(line)          # add line to our list
+# reads all SRTs in the target directory
+for stuff in glob.glob(os.path.join(path, '*.srt')):
+    f = open(stuff,'r')
+    material = f.read()
+# finds EN lines with the regex function and writes them to the master file
+    for subline in material.splitlines():
+    	if result.match(subline):
+    		master.write(subline + '\n')
+   	f.close()
+master.close()
 
-
-#
-#  Check our results by printing out to screen (for debugging)
-#
-for line in result_lines:
-    print(line)
-
-
-# (for debugging the regex search)
-print(quest)
-
-# masterfile = open('MASTERTRANSCRIPT.txt','w')
-# masterfile.write(quest)
+##################################################
+## End TRANSCRIPTER                             ##
+##################################################
