@@ -10,7 +10,7 @@
 ## (c) 2015 SMATOOS, Inc.                       ##
 ##################################################
 
-# import Regex and set up the basic search criteria
+# import Regex and set up the basic search criteria to find English lines
 import re
 english = re.compile('[a-zA-Z]')
 
